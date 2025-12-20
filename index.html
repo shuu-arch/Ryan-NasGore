@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Ryan NasGore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <h2 class="logo">GFX <span>Designer</span></h2>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="profile-card">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/profile_ywypj7.png" class="avatar">
+    <h1>Ryan <span>NasGore</span></h1>
+    <p>Graphic Designer • GFX Designer</p>
+    <a href="#gallery" class="btn">View Works</a>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <h2>My <span>Works</span></h2>
+  <p>Only Part</p>
+
+  <div class="slider" id="slider">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/v1766191693/Copy_of_wuwek_Copy_4E9C160_spsijq.png" loading="lazy" onclick="openLightbox(0)">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/v1766191692/Copy_of_Mbak_Zani_C9EF966_csjlty.png" loading="lazy" onclick="openLightbox(1)">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/v1766191695/Copy_of_New_Project_FC156A3__polarr_1_vfyzjm.png" loading="lazy" onclick="openLightbox(2)">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/v1766191693/Copy_of_Ichikah_69E357F_fb8fs5.png" loading="lazy" onclick="openLightbox(3)">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/v1766191692/Copy_of_jjnnnncizzrs9_E17467A__polarr_2_dlli8e.png" loading="lazy" onclick="openLightbox(4)">
+    <img src="https://res.cloudinary.com/dlvpda9cf/image/upload/v1766191692/Copy_of_ryanramadhani_exe_70E8ADE_xuhmxs.png" loading="lazy" onclick="openLightbox(5)">
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-bg" id="lightbox-bg"></div>
+  <span class="close" onclick="closeLightbox()">✕</span>
+  <span class="nav prev" onclick="prevImage()">❮</span>
+  <img id="lightbox-img">
+  <span class="nav next" onclick="nextImage()">❯</span>
+</div>
+<section class="about" id="about">
+  <h2>About <span>Me</span></h2>
+
+  <p>
+    I am a graphic designer who focuses on crafting visually striking yet balanced designs. I enjoy working with typography, color harmony, and UI-inspired layouts to create visuals that feel modern and intentional.
+  </p>
+    <p> . </p>
+  <p>
+    Through personal projects, I explore different styles, from minimal compositions to expressive GFX while continuously refining my creative direction. I believe good design is not only about aesthetics, but also clarity and emotion.
+  </p>
+</section>
+<section class="contact" id="contact">
+  <h2>Get <span>In Touch</span></h2>
+  <p>DM untuk kerja sama & project.</p>
+  <a href="https://tr.ee/jeoQiMYvTd" class="btn">Contact Me</a>
+</section>
+<footer>
+  Ingin Menjadi Editor Hamdal Namun Enggan Mengedit
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
