@@ -19,4 +19,4 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => box.classList.remove("touched"), 500);
         }, { passive: true });
     });
-});
+}); 
