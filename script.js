@@ -11,25 +11,25 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar.style.width = `${scrollPercent}%`;
     }, { passive: true });
 
-    // 2. Scroll Reveal Animation
+    // 2. Scroll Reveal
     const revealElements = document.querySelectorAll(".reveal");
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.classList.add("active");
-                }, index * 50);
+                }, index * 45);
                 observer.unobserve(entry.target);
             }
         });
     }, {
         threshold: 0.08,
-        rootMargin: "0px 0px -25px 0px"
+        rootMargin: "0px 0px -24px 0px"
     });
 
     revealElements.forEach((el) => revealObserver.observe(el));
 
-    // 3. Interactive Category Filter (Untuk navigasi cepat Gen-Z & Boomers)
+    // 3. Category Filter
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectItems = document.querySelectorAll(".project-item");
 
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add("active");
 
             const filterValue = btn.getAttribute("data-filter");
-
             projectItems.forEach((item) => {
                 const categories = item.getAttribute("data-category") || "";
                 if (filterValue === "all" || categories.includes(filterValue)) {
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 4. Animasi Penghitung Angka (+45% Avg. Engagement)
+    // 4. Stat Counter (+45%)
     const statNum = document.querySelector(".stat-num");
     if (statNum) {
         const statObserver = new IntersectionObserver((entries, observer) => {
@@ -60,8 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (entry.isIntersecting) {
                     const target = 45;
                     let current = 0;
-                    const stepTime = 24;
-
                     const timer = setInterval(() => {
                         current += 1;
                         statNum.textContent = `+${current}%`;
@@ -69,8 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             statNum.textContent = `+${target}%`;
                             clearInterval(timer);
                         }
-                    }, stepTime);
-
+                    }, 22);
                     observer.unobserve(entry.target);
                 }
             });
@@ -79,44 +75,23 @@ document.addEventListener("DOMContentLoaded", () => {
         statObserver.observe(statNum);
     }
 
-    // 5. Specular Sheen Tracking (Desktop Mouse & Android Touch)
-    const cards = document.querySelectorAll(".card");
-    const updateSheen = (card, x, y) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mouse-x", `${x - rect.left}px`);
-        card.style.setProperty("--mouse-y", `${y - rect.top}px`);
-    };
-
-    cards.forEach((card) => {
-        card.addEventListener("mousemove", (e) => updateSheen(card, e.clientX, e.clientY), { passive: true });
-        card.addEventListener("touchstart", (e) => {
-            if (e.touches.length > 0) updateSheen(card, e.touches[0].clientX, e.touches[0].clientY);
-            card.classList.add("is-touched");
-        }, { passive: true });
-        card.addEventListener("touchmove", (e) => {
-            if (e.touches.length > 0) updateSheen(card, e.touches[0].clientX, e.touches[0].clientY);
-        }, { passive: true });
-        card.addEventListener("touchend", () => card.classList.remove("is-touched"), { passive: true });
-    });
-
-    // 6. Rich Lightbox Modal (Membuka Gambar + Judul & Deskripsi Karya)
+    // 5. Lightbox Modal
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const lbTitle = document.getElementById("lb-title");
     const lbTools = document.getElementById("lb-tools");
     const lbDesc = document.getElementById("lb-desc");
     const closeLb = document.querySelector(".close-lb");
-    const imageBoxes = document.querySelectorAll(".img-box");
+    const imgFrames = document.querySelectorAll(".img-frame");
 
-    imageBoxes.forEach((box) => {
-        box.addEventListener("click", () => {
-            const img = box.querySelector("img");
+    imgFrames.forEach((frame) => {
+        frame.addEventListener("click", () => {
+            const img = frame.querySelector("img");
             if (!img) return;
-
             lightboxImg.src = img.src;
-            lbTitle.textContent = box.getAttribute("data-title") || img.alt || "Detail Karya";
-            lbTools.textContent = box.getAttribute("data-tools") || "GRAPHIC DESIGN";
-            lbDesc.textContent = box.getAttribute("data-desc") || "";
+            lbTitle.textContent = frame.getAttribute("data-title") || img.alt || "Detail Karya";
+            lbTools.textContent = frame.getAttribute("data-tools") || "GRAPHIC DESIGN";
+            lbDesc.textContent = frame.getAttribute("data-desc") || "";
             lightbox.classList.add("open");
         });
     });
@@ -131,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === lightbox) closeModal();
     });
 
-    // 7. One-Tap Copy Username + Toast Notification
+    // 6. Copy Handle + Toast
     const copyBtn = document.getElementById("copy-handle-btn");
     const toast = document.getElementById("toast");
 
@@ -140,25 +115,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const textToCopy = copyBtn.getAttribute("data-copy") || "@ryanramadhani_exe";
             try {
                 await navigator.clipboard.writeText(textToCopy);
-                toast.textContent = `Username ${textToCopy} berhasil disalin!`;
+                toast.textContent = `Username ${textToCopy} disalin!`;
             } catch {
                 toast.textContent = `Username: ${textToCopy}`;
             }
             toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2600);
+            setTimeout(() => toast.classList.remove("show"), 2500);
         });
     }
-    // 8. Floating AI Project Pop-up Widget
+
+    // 7. Floating AI Project Pop-up Widget
     const aiFabBtn = document.getElementById("ai-fab-btn");
     const aiPopup = document.getElementById("ai-popup");
     const aiCloseBtn = document.getElementById("ai-close-btn");
 
     if (aiFabBtn && aiPopup) {
         const toggleAiPopup = (forceState) => {
-            const isOpen = typeof forceState === "boolean" 
-                ? forceState 
+            const isOpen = typeof forceState === "boolean"
+                ? forceState
                 : !aiPopup.classList.contains("open");
-            
+
             aiPopup.classList.toggle("open", isOpen);
             aiFabBtn.setAttribute("aria-expanded", String(isOpen));
             aiPopup.setAttribute("aria-hidden", String(!isOpen));
@@ -173,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
             aiCloseBtn.addEventListener("click", () => toggleAiPopup(false));
         }
 
-        // Tutup otomatis jika pengguna mengetuk area luar pop-up
         document.addEventListener("click", (e) => {
             if (aiPopup.classList.contains("open") && !aiPopup.contains(e.target) && !aiFabBtn.contains(e.target)) {
                 toggleAiPopup(false);
